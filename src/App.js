@@ -73,7 +73,7 @@ export default function Weather() {
               </div>
             </div>
             <div className="col-3">
-              <div className="float-right">
+              <div className="float-right temperature">
                 <strong>{weatherData.temperature}</strong>
 
                 <span className="units">
@@ -110,9 +110,10 @@ export default function Weather() {
       </div>
       <footer>
         <a
-          class="gitGub"
+          class="gitHub"
           href="https://github.com/larissa1992/weather-app"
           target="_blank"
+          rel="noreferrer"
         >
           Open-source code{" "}
         </a>{" "}
@@ -121,13 +122,16 @@ export default function Weather() {
           class="linkedin"
           href="https://www.linkedin.com/in/larisamarola/"
           target="_blank"
+          rel="noreferrer"
         >
           Larissa Adina
         </a>{" "}
         and hosted on{" "}
         <a
+          class="netlify"
           href="https://6332c599ed81d50009df128d--soft-starburst-fa84d0.netlify.app/"
           target="_blank"
+          rel="noreferrer"
         >
           Netlify.
         </a>
