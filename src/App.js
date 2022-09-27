@@ -109,13 +109,28 @@ export default function Weather() {
         </div>
       </div>
       <footer>
-        <a href="https://github.com/larissa1992/weather-app">
+        <a
+          class="gitGub"
+          href="https://github.com/larissa1992/weather-app"
+          target="_blank"
+        >
           Open-source code{" "}
         </a>{" "}
         by{" "}
-        <a href="https://app.netlify.com/sites/soft-starburst-fa84d0/overview">
+        <a
+          class="linkedin"
+          href="https://www.linkedin.com/in/larisamarola/"
+          target="_blank"
+        >
           Larissa Adina
         </a>{" "}
+        and hosted on{" "}
+        <a
+          href="https://6332c599ed81d50009df128d--soft-starburst-fa84d0.netlify.app/"
+          target="_blank"
+        >
+          Netlify.
+        </a>
       </footer>
     </div>
   );
