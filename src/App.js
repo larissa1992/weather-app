@@ -109,7 +109,13 @@ export default function Weather() {
         </div>
       </div>
       <footer>
-        <a href="#">Open-source code </a> by <a href="#">Larissa Adina</a>{" "}
+        <a href="https://github.com/larissa1992/weather-app">
+          Open-source code{" "}
+        </a>{" "}
+        by{" "}
+        <a href="https://app.netlify.com/sites/soft-starburst-fa84d0/overview">
+          Larissa Adina
+        </a>{" "}
       </footer>
     </div>
   );
