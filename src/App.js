@@ -1,19 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
-
+import axios from "axios";
 import backgroundVideo from "./video.mp4";
 
 export default function Weather() {
-  let weatherData = {
-    city: "Copenhagen",
-    temperature: 18,
-    date: "Wednesday 10:00",
-    description: "Cloudy",
-    imgUrl: "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
-    feelsLike: 17,
-    humidity: 60,
-    wind: 10,
-  };
+  const [city, setCity] = useState(" ");
+  const [weather, setWeather] = useState(" ");
+
+  function displayWeatherConditions(response) {
+    setWeather({
+      temperature: Math.round(response.data.main.temp),
+      humidity: Math.round(response.data.main.humidity),
+      description: response.data.weather[0].description,
+      wind: Math.round(response.data.wind.speed),
+      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+    });
+    console.log(response.data);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=paris&appid=35fc3221d495b343bc97b3dea0447fe8&units=metric`;
+    axios.get(apiUrl).then(displayWeatherConditions);
+  }
+
+  function updateCity(event) {
+    setCity(event.target.value);
+  }
 
   return (
     <div className="Weather">
@@ -27,16 +40,24 @@ export default function Weather() {
       ></video>
       <div className="container-border">
         <h1 className="title m-5">Weather Forecast</h1>
+        <ul className="d-flex justify-content-evenly text-secondary">
+          <li>Paris</li>
+          <li>Madrid</li>
+          <li>Berlin</li>
+          <li>Potugal</li>
+        </ul>
 
         <form>
           <div className="row m-5">
             <div className="col-6">
               <input
+                onSubmit={handleSubmit}
                 type="text"
                 className="btn btn-outline-light btn-lg w-100 shadow-sm search-input"
                 placeholder="What's the weather in..."
-                autocomplete="off"
-                autofocus
+                autoComplete="off"
+                autoFocus
+                onChange={updateCity}
               />
             </div>
             <div className="col-2">
@@ -47,26 +68,28 @@ export default function Weather() {
               />
             </div>
             <div className="col-2">
-              <button className="btn border-0 btn-light btn-sm shadow-sm current-position">
-                Current Location
-              </button>
+              <input
+                type="submit"
+                value="Current Location"
+                className="btn border-0 btn-info  btn-lg shadow-sm current-location"
+              />
             </div>
           </div>
         </form>
 
         <div className="overview m-5">
-          <h2 className="city"> {weatherData.city}</h2>
+          <h2 className="city"> {city}</h2>
 
           <ul>
-            <li> {weatherData.date} </li>
-            <li> {weatherData.description} </li>
+            <li> {weather.date} </li>
+            <li> {weather.description} </li>
           </ul>
           <div className="row">
             <div className="col-2">
               <div className="clear-fix  weather-temperature">
                 <img
-                  src={weatherData.imgUrl}
-                  alt={weatherData.description}
+                  src={weather.icon}
+                  alt={weather.description}
                   className="float-left"
                   width="80"
                 />
@@ -74,7 +97,7 @@ export default function Weather() {
             </div>
             <div className="col-3">
               <div className="float-right temperature">
-                <strong>{weatherData.temperature}</strong>
+                <strong>{weather.temperature}</strong>
 
                 <span className="units">
                   <a href="/" className="active">
@@ -89,18 +112,18 @@ export default function Weather() {
               <div className="weather-condition">
                 <button className="wrap-up">
                   <div className="inner-text">
-                    Feels like: <span> {weatherData.feelsLike} </span>°
+                    Feels like: <span> {weather.feelsLike} </span>°
                   </div>
                 </button>
                 <button className="wrap-up">
                   <div className="inner-text">
                     {" "}
-                    Humidity: <span> {weatherData.humidity}</span>%{" "}
+                    Humidity: <span> {weather.humidity}</span>%{" "}
                   </div>
                 </button>
                 <button className="wrap-up">
                   <div className="inner-text">
-                    Wind: <span> {weatherData.wind}</span>m/h
+                    Wind: <span> {weather.wind}</span>m/h
                   </div>
                 </button>
               </div>
@@ -110,7 +133,7 @@ export default function Weather() {
       </div>
       <footer>
         <a
-          class="gitHub"
+          className="gitHub"
           href="https://github.com/larissa1992/weather-app"
           target="_blank"
           rel="noreferrer"
@@ -119,7 +142,7 @@ export default function Weather() {
         </a>{" "}
         by{" "}
         <a
-          class="linkedin"
+          className="linkedin"
           href="https://www.linkedin.com/in/larisamarola/"
           target="_blank"
           rel="noreferrer"
@@ -128,7 +151,7 @@ export default function Weather() {
         </a>{" "}
         and hosted on{" "}
         <a
-          class="netlify"
+          className="netlify"
           href="https://6332c599ed81d50009df128d--soft-starburst-fa84d0.netlify.app/"
           target="_blank"
           rel="noreferrer"

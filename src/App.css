@@ -35,6 +35,9 @@ video {
   color: #373636;
   opacity: 1;
 }
+.current-location {
+  font-weight: 460;
+}
 
 .city-country {
   font-weight: 540;
