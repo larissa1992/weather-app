@@ -142,8 +142,8 @@ export default function Weather() {
         </a>{" "}
         by{" "}
         <a
-          className="linkedin"
-          href="https://www.linkedin.com/in/larisamarola/"
+          className="porfolio"
+          href="https://rainbow-valkyrie-5d08eb.netlify.app/"
           target="_blank"
           rel="noreferrer"
         >
